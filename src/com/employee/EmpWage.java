@@ -5,10 +5,9 @@ public class EmpWage {
 	public static final int IS_FULL_TIME = 2;
 	public static final int EMP_RATE_PER_HOUR = 20;
 	public static final int NUM_OF_WORKING_DAYS = 20;
-
+    public static final int MAX_HRS_IN_MONTH = 10;
 	public static void main(String[] args) {
-		int empHrs = 0, totalEmpWage = 0;
-		int empWage = 0;
+		int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
 		System.out.println("Welcome to Employee");
 		System.out.println("Wage Computation");
 		System.out.println("Program On Master Branch");
@@ -17,7 +16,9 @@ public class EmpWage {
 			System.out.println("Employee is Present");
 		else
 			System.out.println("Employee is Absent");
-		for (int day = 0; day < NUM_OF_WORKING_DAYS; day++) {
+		while (totalEmpHrs <= MAX_HRS_IN_MONTH &&
+			   totalWorkingDays < NUM_OF_WORKING_DAYS) {
+			totalWorkingDays++;
 			switch (empCheck) {
 			case IS_PART_TIME:
 				empHrs = 8;
@@ -28,10 +29,10 @@ public class EmpWage {
 			default:
 				empHrs = 0;
 			}
-			empWage = empHrs * EMP_RATE_PER_HOUR;
-			totalEmpWage += empWage;
-			System.out.println("Emp Wage: " + empWage);
+			totalEmpHrs += empHrs;
+			System.out.println("Day#: " + totalWorkingDays + " Emp Hr: " +empHrs);
 		}
+		int totalEmpWage = totalEmpHrs * EMP_RATE_PER_HOUR;
 		System.out.println("Total Emp Wage: " + totalEmpWage);
 	}
 }
